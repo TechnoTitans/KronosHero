@@ -1,6 +1,3 @@
-using Microsoft.SPOT;
-using System;
-
 namespace KronosHero.wpilib.math {
     public static class MathUtil {
         public static double InputModulus(double input, double minimumInput, double maximumInput) {
