@@ -23,7 +23,7 @@ namespace Kronos.robot.teleop {
             driverModule.Set(Constants.DriverModule.ShotPort, true);
             stopwatch.Start();
         }
-
+         
         public override bool IsFinished() {
             return stopwatch.DurationMs >= shotTiming;
         }

@@ -20,11 +20,11 @@ namespace Kronos.wpilib.controller {
 
         public enum AxisId : uint {
             LeftX = 0,
-            RightX = 4,
             LeftY = 1,
-            RightY = 5,
-            LeftTrigger = 2,
-            RightTrigger = 3
+            RightX = 2,
+            RightY = 3,
+            LeftTrigger = 4,
+            RightTrigger = 5
         }
 
         public XboxController(uint id) : base(UsbHostDevice.GetInstance(id), id) { }
@@ -46,11 +46,11 @@ namespace Kronos.wpilib.controller {
         }
 
         public double GetLeftTriggerAxis() {
-            return GetAxis((uint)AxisId.LeftTrigger);
+            return (GetAxis((uint)AxisId.LeftTrigger) + 1) / 2;
         }
 
         public double GetRightTriggerAxis() {
-            return GetAxis((uint)AxisId.RightTrigger);
+            return (GetAxis((uint)AxisId.RightTrigger) + 1) / 2;
         }
 
         public bool GetLeftBumper() {

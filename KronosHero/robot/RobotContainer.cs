@@ -5,6 +5,7 @@ using Kronos.robot.Subsystems;
 using Kronos.robot.teleop;
 using Kronos.wpilib.command;
 using Kronos.wpilib.controller;
+using KronosHero.robot.subsystems;
 
 namespace Kronos.robot {
     public class RobotContainer {
@@ -16,9 +17,11 @@ namespace Kronos.robot {
         private readonly TalonSRX barrelTiltMotor;
         private readonly TalonSRX barrelIndexMotor;
 
+        public readonly DriverModule driverModule;
+        // public readonly RSL rsl;
+
         public readonly TankDrive tankDrive;
         public readonly Barrel barrel;
-        public readonly DriverModule driverModule;
 
         public readonly DriveTeleop driveTeleop;
         public readonly BarrelTiltTeleop barrelTeleop;
@@ -26,7 +29,7 @@ namespace Kronos.robot {
 
         public readonly CommandXboxController controller;
 
-        public RobotContainer() {
+        public RobotContainer(Robot robot) {
             leftMain = new TalonSRX(Constants.Motors.FrontLeftMain);
             leftFollower = new TalonSRX(Constants.Motors.FrontLeftFollower);
             rightMain = new TalonSRX(Constants.Motors.FrontRightMain);
@@ -35,9 +38,11 @@ namespace Kronos.robot {
             barrelTiltMotor = new TalonSRX(Constants.Motors.Tilt);
             barrelIndexMotor = new TalonSRX(Constants.Motors.Index);
 
+            driverModule = new DriverModule(Constants.DriverModule.DriveModulePort);
+            // rsl = new RSL(robot, driverModule, Constants.DriverModule.RSLPort);
+
             tankDrive = new TankDrive(leftMain, leftFollower, rightMain, rightFollower);
             barrel = new Barrel(barrelTiltMotor, barrelIndexMotor);
-            driverModule = new DriverModule(Constants.DriverModule.DriveModulePort);
 
             controller = new CommandXboxController(Constants.Controls.ControllerPort);
 
@@ -52,7 +57,7 @@ namespace Kronos.robot {
             controller.A().OnTrue(shootTeleop);
 
             controller.B().OnTrue(new InstantCommand(() => {
-                barrel.Index();
+                //barrel.Index();
             }));
 
             controller.X().OnTrue(new InstantCommand(() => {

@@ -40,11 +40,13 @@
   <ItemGroup>
     <Compile Include="net\Collections.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="robot\commands\SetRobotStateCommand.cs" />
     <Compile Include="robot\Constants.cs" />
     <Compile Include="robot\Robot.cs" />
     <Compile Include="robot\RobotContainer.cs" />
     <Compile Include="robot\Start.cs" />
     <Compile Include="robot\subsystems\Barrel.cs" />
+    <Compile Include="robot\subsystems\RSL.cs" />
     <Compile Include="robot\subsystems\TankDrive.cs" />
     <Compile Include="robot\teleop\TiltTeleop.cs" />
     <Compile Include="robot\teleop\DriveTeleop.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="wpilib\controller\EventLoop.cs" />
     <Compile Include="wpilib\controller\Trigger.cs" />
     <Compile Include="wpilib\controller\XboxController.cs" />
+    <Compile Include="wpilib\math\MathUtil.cs" />
     <Compile Include="wpilib\netmf\Delegates.cs" />
     <Compile Include="wpilib\command\Command.cs" />
     <Compile Include="wpilib\robot\IterativeRobotBase.cs" />

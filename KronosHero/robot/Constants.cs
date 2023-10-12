@@ -15,7 +15,7 @@ namespace Kronos.robot {
 
         public static class Barrel {
             public const int IndexPositions = 6;
-            public const int ZeroedEncoderOffsetTicks = -5;
+            public const int ZeroedEncoderOffsetTicks = 0;
         }
 
         public static class CTRE {
@@ -27,6 +27,7 @@ namespace Kronos.robot {
 
             public const int CompressorPort = 5;
             public const int ShotPort = 3;
+            public const int RSLPort = 1;
         }
 
         public class ShotTimingBoard {
@@ -36,10 +37,10 @@ namespace Kronos.robot {
 
         public static class Motors {
             public const int FrontLeftMain = 3;
-            public const InvertType FrontLeftInversion = InvertType.None;
+            public const InvertType FrontLeftInversion = InvertType.InvertMotorOutput;
             public const int FrontLeftFollower = 1;
             public const int FrontRightMain = 2;
-            public const InvertType FrontRightInversion = InvertType.InvertMotorOutput;
+            public const InvertType FrontRightInversion = InvertType.None;
             public const int FrontRightFollower = 4;
 
             public const int Tilt = 8;

@@ -1,4 +1,3 @@
-using CTRE.Phoenix.Controller;
 using Kronos.robot.subsystems;
 using Kronos.robot.utils;
 using Kronos.wpilib.command;
@@ -16,16 +15,20 @@ namespace Kronos.robot.teleop {
             AddRequirements(barrel);
         }
 
+        public override void End(bool interrupted) {
+            barrel.Stop();
+        }
+
         public override void Execute() {
-            double tiltPower = TitanMath.Deadband(
-                controller.GetLeftTriggerAxis(),
-                Constants.Controls.Deadband
-            ) - TitanMath.Deadband(
+            double tiltPower = (MaxMath.Deadband(
                 controller.GetRightTriggerAxis(),
                 Constants.Controls.Deadband
-            );
+            ) - MaxMath.Deadband(
+                controller.GetLeftTriggerAxis(),
+                Constants.Controls.Deadband
+            )) * 0.5;
 
-            barrel.Tilt(tiltPower);
+            barrel.SetTiltPower(tiltPower);
         }
     }
 }

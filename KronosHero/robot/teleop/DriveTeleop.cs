@@ -1,6 +1,7 @@
 using Kronos.robot.Subsystems;
 using Kronos.wpilib.command;
 using Kronos.wpilib.controller;
+using Microsoft.SPOT;
 
 namespace Kronos.robot.teleop {
     public class DriveTeleop : Command {
@@ -19,6 +20,10 @@ namespace Kronos.robot.teleop {
             double zRotation = controller.GetRightX();
 
             tankDrive.SetInputs(xSpeed, zRotation);
+        }
+
+        public override bool IsFinished() {
+            return false;
         }
     }
 }

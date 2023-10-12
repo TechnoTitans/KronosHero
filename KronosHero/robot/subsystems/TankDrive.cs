@@ -2,6 +2,7 @@ using CTRE.Phoenix.MotorControl;
 using CTRE.Phoenix.MotorControl.CAN;
 using Kronos.robot.utils;
 using Kronos.wpilib.command;
+using Microsoft.SPOT;
 
 namespace Kronos.robot.Subsystems {
     public class TankDrive : Subsystem {
@@ -33,9 +34,10 @@ namespace Kronos.robot.Subsystems {
                 statorCurrLimit = new StatorCurrentLimitConfiguration {
                     currentLimit = 15,
                     triggerThresholdCurrent = 10,
-                    triggerThresholdTime = 10,
+                    triggerThresholdTime = 0.1f,
                     enable = true
-                }
+                },
+                openloopRamp = 0.4f
             };
 
             leftMain.ConfigAllSettings(motorConfiguration);
@@ -63,19 +65,19 @@ namespace Kronos.robot.Subsystems {
         }
 
         public void SetInputs(double xSpeed, double zRotation, bool squareInputs = true) {
-            xSpeed = TitanMath.Deadband(xSpeed, Constants.Controls.Deadband);
-            zRotation = TitanMath.Deadband(zRotation, Constants.Controls.Deadband);
+            xSpeed = MaxMath.Deadband(xSpeed, Constants.Controls.Deadband);
+            zRotation = MaxMath.Deadband(zRotation, Constants.Controls.Deadband);
 
             speeds = ArcadeDrive(xSpeed, zRotation, squareInputs);
         }
 
         private static WheelSpeeds ArcadeDrive(double xSpeed, double zRotation, bool squareInputs) {
-            xSpeed = TitanMath.Clamp(xSpeed, -1.0, 1.0);
-            zRotation = TitanMath.Clamp(zRotation, -1.0, 1.0);
+            xSpeed = MaxMath.Clamp(xSpeed, -1.0, 1.0);
+            zRotation = MaxMath.Clamp(zRotation, -1.0, 1.0);
 
             if (squareInputs) {
-                xSpeed = TitanMath.SquareInputs(xSpeed);
-                zRotation = TitanMath.SquareInputs(zRotation);
+                xSpeed = MaxMath.SquareInputs(xSpeed);
+                zRotation = MaxMath.SquareInputs(zRotation);
             }
 
             double leftSpeed = xSpeed - zRotation;
