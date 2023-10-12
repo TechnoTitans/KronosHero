@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Kronos.robot.Start</StartupObject>
+    <StartupObject>KronosHero.robot.Start</StartupObject>
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
@@ -56,7 +56,9 @@
     <Compile Include="wpilib\command\CommandScheduler.cs" />
     <Compile Include="wpilib\command\FunctionalCommand.cs" />
     <Compile Include="wpilib\command\InstantCommand.cs" />
+    <Compile Include="wpilib\command\SequentialCommandGroup.cs" />
     <Compile Include="wpilib\command\Subsystem.cs" />
+    <Compile Include="wpilib\command\WaitCommand.cs" />
     <Compile Include="wpilib\controller\BooleanEvent.cs" />
     <Compile Include="wpilib\controller\CommandGenericController.cs" />
     <Compile Include="wpilib\controller\CommandXboxController.cs" />

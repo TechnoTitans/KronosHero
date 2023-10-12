@@ -2,7 +2,7 @@ using CTRE.Gadgeteer;
 using CTRE.HERO;
 using CTRE.Phoenix.MotorControl;
 
-namespace Kronos.robot {
+namespace KronosHero.robot {
     public static class Constants {
         public const double LoopPeriodSeconds = 0.02;
 

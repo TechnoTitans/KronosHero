@@ -1,42 +1,47 @@
 using CTRE.Gadgeteer.Module;
 using CTRE.Phoenix;
-using Kronos.robot;
-using Kronos.wpilib.command;
-using Kronos.wpilib.robot;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.robot;
 
 namespace KronosHero.robot.subsystems {
+    // ReSharper disable once InconsistentNaming
     public class RSL : Subsystem {
-        public const uint BLINK_DURATION_MS = 500;
+        private const uint BlinkDurationMs = 500;
 
         private readonly Robot robot;
         private readonly DriverModule driverModule;
         private readonly int port;
         private readonly PeriodicTimeout periodicTimeout;
 
-        private bool state = false;
+        private bool state;
 
         public RSL(Robot robot, DriverModule driverModule, int port) {
             this.robot = robot;
             this.driverModule = driverModule;
             this.port = port;
-            this.periodicTimeout = new PeriodicTimeout(BLINK_DURATION_MS);
+            
+            periodicTimeout = new PeriodicTimeout(BlinkDurationMs);
         }
 
         public override void Periodic() {
-            if (robot.CurrentState == RobotState.Disabled) {
-                driverModule.Set(port, state = true);
-                return;
-            }
-            
-            if (robot.CurrentState == RobotState.Teleop
-                    || robot.CurrentState == RobotState.Autonomous
-                    || robot.CurrentState == RobotState.Test
-            ) {
-                if (!periodicTimeout.Process()) {
+            switch (robot.CurrentState) {
+                case RobotState.Disabled:
+                    driverModule.Set(port, state = true);
                     return;
-                }
+                case RobotState.Teleop:
+                case RobotState.Autonomous:
+                case RobotState.Test:
+                {
+                    if (!periodicTimeout.Process()) {
+                        return;
+                    }
 
-                driverModule.Set(port, state = !state);
+                    driverModule.Set(port, state = !state);
+                    break;
+                }
+                default:
+                    driverModule.Set(port, state = false);
+                    break;
             }
         }
     }

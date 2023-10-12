@@ -1,10 +1,11 @@
 using CTRE.Phoenix.Controller;
-using Kronos.wpilib.command;
+using KronosHero.wpilib.command;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable MemberCanBeProtected.Global
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class CommandGenericController {
         public GameController Controller {
             get;

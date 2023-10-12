@@ -1,4 +1,4 @@
-namespace Kronos.wpilib.command {
+namespace KronosHero.wpilib.command {
     public class Subsystem {
         public Subsystem() {
             CommandScheduler.RegisterSubsystem(this);

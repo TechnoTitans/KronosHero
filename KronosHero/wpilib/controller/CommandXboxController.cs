@@ -1,8 +1,9 @@
-using Kronos.wpilib.command;
+using KronosHero.wpilib.command;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class CommandXboxController : CommandGenericController {
         private readonly XboxController xboxController;
 

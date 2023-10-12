@@ -1,9 +1,10 @@
 using CTRE.Phoenix;
 using CTRE.Phoenix.Controller;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class XboxController : Xbox360Gamepad {
         public enum ButtonId : uint {
             LeftBumper = 5,
@@ -30,35 +31,35 @@ namespace Kronos.wpilib.controller {
         public XboxController(uint id) : base(UsbHostDevice.GetInstance(id), id) { }
 
         public double GetLeftX() {
-            return GetAxis((uint)AxisId.LeftX);
+            return this.GetAxis((uint)AxisId.LeftX);
         }
 
         public double GetRightX() {
-            return GetAxis((uint)AxisId.RightX);
+            return this.GetAxis((uint)AxisId.RightX);
         }
 
         public double GetLeftY() {
-            return GetAxis((uint)AxisId.LeftY);
+            return this.GetAxis((uint)AxisId.LeftY);
         }
 
         public double GetRightY() {
-            return GetAxis((uint)AxisId.RightY);
+            return this.GetAxis((uint)AxisId.RightY);
         }
 
         public double GetLeftTriggerAxis() {
-            return (GetAxis((uint)AxisId.LeftTrigger) + 1) / 2;
+            return (this.GetAxis((uint)AxisId.LeftTrigger) + 1) / 2;
         }
 
         public double GetRightTriggerAxis() {
-            return (GetAxis((uint)AxisId.RightTrigger) + 1) / 2;
+            return (this.GetAxis((uint)AxisId.RightTrigger) + 1) / 2;
         }
 
         public bool GetLeftBumper() {
-            return GetButton((uint)ButtonId.LeftBumper);
+            return this.GetButton((uint)ButtonId.LeftBumper);
         }
 
         public bool GetRightBumper() {
-            return GetButton((uint)ButtonId.RightBumper);
+            return this.GetButton((uint)ButtonId.RightBumper);
         }
 
         public BooleanEvent LeftBumper(EventLoop eventLoop) {
@@ -70,11 +71,11 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetLeftStickButton() {
-            return GetButton((uint)ButtonId.LeftStick);
+            return this.GetButton((uint)ButtonId.LeftStick);
         }
 
         public bool GetRightStickButton() {
-            return GetButton((uint)ButtonId.RightStick);
+            return this.GetButton((uint)ButtonId.RightStick);
         }
 
         public BooleanEvent LeftStick(EventLoop eventLoop) {
@@ -86,7 +87,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetAButton() {
-            return GetButton((uint)ButtonId.A);
+            return this.GetButton((uint)ButtonId.A);
         }
 
         public BooleanEvent A(EventLoop eventLoop) {
@@ -94,7 +95,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetBButton() {
-            return GetButton((uint)ButtonId.B);
+            return this.GetButton((uint)ButtonId.B);
         }
 
         public BooleanEvent B(EventLoop eventLoop) {
@@ -102,7 +103,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetXButton() {
-            return GetButton((uint)ButtonId.X);
+            return this.GetButton((uint)ButtonId.X);
         }
 
         public BooleanEvent X(EventLoop eventLoop) {
@@ -110,7 +111,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetYButton() {
-            return GetButton((uint)ButtonId.Y);
+            return this.GetButton((uint)ButtonId.Y);
         }
 
         public BooleanEvent Y(EventLoop eventLoop) {
@@ -118,7 +119,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetBackButton() {
-            return GetButton((uint)ButtonId.Back);
+            return this.GetButton((uint)ButtonId.Back);
         }
 
         public BooleanEvent Back(EventLoop eventLoop) {
@@ -126,7 +127,7 @@ namespace Kronos.wpilib.controller {
         }
 
         public bool GetStartButton() {
-            return GetButton((uint)ButtonId.Start);
+            return this.GetButton((uint)ButtonId.Start);
         }
 
         public BooleanEvent Start(EventLoop eventLoop) {

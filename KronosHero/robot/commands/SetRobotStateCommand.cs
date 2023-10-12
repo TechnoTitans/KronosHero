@@ -1,6 +1,5 @@
-using Kronos.robot;
-using Kronos.wpilib.command;
-using Kronos.wpilib.robot;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.robot;
 
 namespace KronosHero.robot.commands {
     public class SetRobotStateCommand : InstantCommand {

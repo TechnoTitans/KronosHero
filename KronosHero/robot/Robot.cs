@@ -1,10 +1,9 @@
 using CTRE.Phoenix;
-using Kronos.wpilib.command;
-using Kronos.wpilib.robot;
 using KronosHero.robot.commands;
-using Microsoft.SPOT;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.robot;
 
-namespace Kronos.robot {
+namespace KronosHero.robot {
     public class Robot : TimedRobot {
         private RobotContainer robotContainer;
 
@@ -21,7 +20,7 @@ namespace Kronos.robot {
                 robotContainer.controller.Controller.GetConnectionStatus();
 
             if (controllerConnectionStatus != UsbDeviceConnection.Connected && CurrentState != RobotState.Disabled) {
-                SetRobotState(RobotState.Disabled);
+                this.SetRobotState(RobotState.Disabled);
             }
 
             CommandScheduler.Run();

@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Kronos.wpilib.command {
+namespace KronosHero.wpilib.command {
     public abstract class Command {
         public enum InterruptionBehavior {
             CancelSelf,

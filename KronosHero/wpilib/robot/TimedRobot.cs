@@ -1,9 +1,9 @@
-using System;
-using System.Threading;
 using CTRE.Phoenix;
 using Microsoft.SPOT;
+using System;
+using System.Threading;
 
-namespace Kronos.wpilib.robot {
+namespace KronosHero.wpilib.robot {
     public class TimedRobot : IterativeRobotBase {
         public const double DefaultPeriodSeconds = 0.02;
         private readonly Thread loopFuncThread;
@@ -14,17 +14,17 @@ namespace Kronos.wpilib.robot {
                 PeriodicTimeout loopFuncTimeout = new PeriodicTimeout((long)(periodSeconds * 1000));
                 while (true) {
                     if (loopFuncTimeout.Process()) {
-                        LoopFunc();
+                        this.LoopFunc();
                     }
                 }
             });
 
-            SetRobotState(RobotState.Disabled);
+            this.SetRobotState(RobotState.Disabled);
         }
 
 
         public override void StartCompetition() {
-            RobotInit();
+            this.RobotInit();
             Debug.Print("********** Robot program startup complete **********");
 
             // start processing state changes and calling the appropriate IterativeRobotBase methods

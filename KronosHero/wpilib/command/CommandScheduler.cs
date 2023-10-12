@@ -1,13 +1,14 @@
+using KronosHero.net;
+using KronosHero.wpilib.controller;
+using KronosHero.wpilib.netmf;
+using KronosHero.wpilib.robot;
+using Microsoft.SPOT;
 using System;
 using System.Collections;
-using Kronos.net;
-using Kronos.wpilib.controller;
-using Kronos.wpilib.netmf;
-using Kronos.wpilib.robot;
-using Microsoft.SPOT;
+
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.command {
+namespace KronosHero.wpilib.command {
     public static class CommandScheduler {
         private static readonly Hashtable ComposedCommands = new Hashtable();
         private static readonly Hashtable ScheduledCommands = new Hashtable();

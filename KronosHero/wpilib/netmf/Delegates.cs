@@ -1,7 +1,7 @@
-using Kronos.wpilib.command;
-using Kronos.wpilib.controller;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.controller;
 
-namespace Kronos.wpilib.netmf {
+namespace KronosHero.wpilib.netmf {
     public delegate void OnEndAction(bool interrupted);
 
     public delegate bool IsFinishedFunc();

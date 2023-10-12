@@ -1,10 +1,10 @@
+using KronosHero.wpilib.netmf;
 using System.Threading;
-using Kronos.wpilib.netmf;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class BooleanEvent {
         protected readonly EventLoop EventLoop;
         private readonly BooleanEventSignalFunc signal;

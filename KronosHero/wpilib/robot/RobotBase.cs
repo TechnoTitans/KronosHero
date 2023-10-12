@@ -1,10 +1,11 @@
+using KronosHero.wpilib.netmf;
+using Microsoft.SPOT;
 using System;
 using System.Threading;
-using Kronos.wpilib.netmf;
-using Microsoft.SPOT;
+
 // ReSharper disable MemberCanBeProtected.Global
 
-namespace Kronos.wpilib.robot {
+namespace KronosHero.wpilib.robot {
     public abstract class RobotBase {
         private static readonly object RobotLock = new object();
         private static Thread _robotThread;

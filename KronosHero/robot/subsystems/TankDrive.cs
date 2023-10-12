@@ -1,10 +1,10 @@
 using CTRE.Phoenix.MotorControl;
 using CTRE.Phoenix.MotorControl.CAN;
-using Kronos.robot.utils;
-using Kronos.wpilib.command;
-using Microsoft.SPOT;
+using KronosHero.robot.utils;
+using KronosHero.wpilib.command;
+using System;
 
-namespace Kronos.robot.Subsystems {
+namespace KronosHero.robot.subsystems {
     public class TankDrive : Subsystem {
         private readonly TalonSRX leftMain;
         private readonly TalonSRX leftFollower;
@@ -13,7 +13,7 @@ namespace Kronos.robot.Subsystems {
 
         private WheelSpeeds speeds;
 
-        public TankDrive(TalonSRX leftMain, TalonSRX leftFollower, TalonSRX rightMain, TalonSRX rightFollower) : base() {
+        public TankDrive(TalonSRX leftMain, TalonSRX leftFollower, TalonSRX rightMain, TalonSRX rightFollower) {
             this.leftMain = leftMain;
             this.leftFollower = leftFollower;
             this.rightMain = rightMain;
@@ -83,8 +83,8 @@ namespace Kronos.robot.Subsystems {
             double leftSpeed = xSpeed - zRotation;
             double rightSpeed = xSpeed + zRotation;
 
-            double greaterInput = System.Math.Max(System.Math.Abs(xSpeed), System.Math.Abs(zRotation));
-            double lesserInput = System.Math.Min(System.Math.Abs(xSpeed), System.Math.Abs(zRotation));
+            double greaterInput = Math.Max(Math.Abs(xSpeed), Math.Abs(zRotation));
+            double lesserInput = Math.Min(Math.Abs(xSpeed), Math.Abs(zRotation));
             if (greaterInput == 0.0) {
                 return new WheelSpeeds(0, 0);
             }

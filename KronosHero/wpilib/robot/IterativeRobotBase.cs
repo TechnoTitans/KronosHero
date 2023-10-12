@@ -1,10 +1,11 @@
-using System;
 using CTRE.Phoenix;
-using Kronos.wpilib.command;
+using KronosHero.wpilib.command;
 using Microsoft.SPOT;
+using System;
+
 // ReSharper disable MemberCanBeProtected.Global
 
-namespace Kronos.wpilib.robot {
+namespace KronosHero.wpilib.robot {
     public abstract class IterativeRobotBase : RobotBase {
         private const RobotState INITIAL_STATE = RobotState.None;
 

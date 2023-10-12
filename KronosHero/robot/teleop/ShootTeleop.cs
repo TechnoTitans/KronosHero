@@ -1,9 +1,9 @@
 using CTRE.Gadgeteer.Module;
 using CTRE.Phoenix;
-using Kronos.robot.subsystems;
-using Kronos.wpilib.command;
+using KronosHero.robot.subsystems;
+using KronosHero.wpilib.command;
 
-namespace Kronos.robot.teleop {
+namespace KronosHero.robot.teleop {
     public class ShootTeleop : Command {
         private readonly Barrel barrel;
         private readonly DriverModule driverModule;
@@ -11,12 +11,13 @@ namespace Kronos.robot.teleop {
 
         private byte shotTiming = 45;
 
-        public ShootTeleop(Barrel barrel, DriverModule driverModule) : base() {
+        public ShootTeleop(Barrel barrel, DriverModule driverModule) {
             this.barrel = barrel;
             this.driverModule = driverModule;
-            this.stopwatch = new Stopwatch();
+            
+            stopwatch = new Stopwatch();
 
-            AddRequirements(barrel);
+            this.AddRequirements(barrel);
         }
 
         public override void Initialize() {
@@ -30,7 +31,10 @@ namespace Kronos.robot.teleop {
 
         public override void End(bool interrupted) {
             driverModule.Set(Constants.DriverModule.ShotPort, false);
-            barrel.Index();
+            new SequentialCommandGroup(
+                new WaitCommand(1),
+                new InstantCommand(() => barrel.Index())
+            ).Schedule();
         }
     }
 }

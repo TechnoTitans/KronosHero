@@ -1,10 +1,10 @@
-using Kronos.wpilib.command;
-using Kronos.wpilib.netmf;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.netmf;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class Trigger {
         private readonly EventLoop eventLoop;
         private readonly BooleanEventSignalFunc condition;

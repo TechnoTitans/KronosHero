@@ -1,9 +1,9 @@
+using KronosHero.wpilib.netmf;
 using System.Threading;
-using Kronos.wpilib.netmf;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Kronos.wpilib.command {
+namespace KronosHero.wpilib.command {
     public class FunctionalCommand : Command {
         protected readonly ThreadStart OnInit;
         protected readonly ThreadStart OnExecute;
@@ -22,7 +22,7 @@ namespace Kronos.wpilib.command {
             OnEnd = onEnd;
             Finished = finished;
 
-            AddRequirements(requirements);
+            this.AddRequirements(requirements);
         }
 
         public override void Initialize() {

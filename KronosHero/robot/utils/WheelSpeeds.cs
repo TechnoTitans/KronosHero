@@ -1,4 +1,4 @@
-namespace Kronos.robot.utils {
+namespace KronosHero.robot.utils {
     public class WheelSpeeds {
         public readonly double Left;
         public readonly double Right;

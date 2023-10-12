@@ -1,18 +1,17 @@
-using Kronos.robot.Subsystems;
-using Kronos.wpilib.command;
-using Kronos.wpilib.controller;
-using Microsoft.SPOT;
+using KronosHero.robot.subsystems;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.controller;
 
-namespace Kronos.robot.teleop {
+namespace KronosHero.robot.teleop {
     public class DriveTeleop : Command {
         private readonly TankDrive tankDrive;
         private readonly CommandXboxController controller;
 
-        public DriveTeleop(TankDrive tankDrive, CommandXboxController controller) : base() {
+        public DriveTeleop(TankDrive tankDrive, CommandXboxController controller) {
             this.tankDrive = tankDrive;
             this.controller = controller;
 
-            AddRequirements(tankDrive);
+            this.AddRequirements(tankDrive);
         }
 
         public override void Execute() {
@@ -20,10 +19,6 @@ namespace Kronos.robot.teleop {
             double zRotation = controller.GetRightX();
 
             tankDrive.SetInputs(xSpeed, zRotation);
-        }
-
-        public override bool IsFinished() {
-            return false;
         }
     }
 }

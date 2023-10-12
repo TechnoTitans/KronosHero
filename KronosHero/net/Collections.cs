@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace Kronos.net {
+namespace KronosHero.net {
     public static class Collections {
         public static bool Contains(ref Array collection, object item) {
             return Array.IndexOf(collection, item, 0, collection.Length) >= 0;

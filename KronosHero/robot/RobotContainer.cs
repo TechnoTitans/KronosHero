@@ -1,13 +1,11 @@
 using CTRE.Gadgeteer.Module;
 using CTRE.Phoenix.MotorControl.CAN;
-using Kronos.robot.subsystems;
-using Kronos.robot.Subsystems;
-using Kronos.robot.teleop;
-using Kronos.wpilib.command;
-using Kronos.wpilib.controller;
 using KronosHero.robot.subsystems;
+using KronosHero.robot.teleop;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.controller;
 
-namespace Kronos.robot {
+namespace KronosHero.robot {
     public class RobotContainer {
         private readonly TalonSRX leftMain;
         private readonly TalonSRX leftFollower;
@@ -57,7 +55,7 @@ namespace Kronos.robot {
             controller.A().OnTrue(shootTeleop);
 
             controller.B().OnTrue(new InstantCommand(() => {
-                //barrel.Index();
+                barrel.Index();
             }));
 
             controller.X().OnTrue(new InstantCommand(() => {

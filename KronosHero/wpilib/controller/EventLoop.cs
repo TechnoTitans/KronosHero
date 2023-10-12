@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Threading;
 
-namespace Kronos.wpilib.controller {
+namespace KronosHero.wpilib.controller {
     public class EventLoop {
         private readonly ArrayList bindings = new ArrayList();
 

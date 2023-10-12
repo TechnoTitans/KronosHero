@@ -1,18 +1,18 @@
-using Kronos.robot.subsystems;
-using Kronos.robot.utils;
-using Kronos.wpilib.command;
-using Kronos.wpilib.controller;
+using KronosHero.robot.subsystems;
+using KronosHero.robot.utils;
+using KronosHero.wpilib.command;
+using KronosHero.wpilib.controller;
 
-namespace Kronos.robot.teleop {
+namespace KronosHero.robot.teleop {
     public class BarrelTiltTeleop : Command {
         private readonly Barrel barrel;
         private readonly CommandXboxController controller;
 
-        public BarrelTiltTeleop(Barrel barrel, CommandXboxController controller) : base() {
+        public BarrelTiltTeleop(Barrel barrel, CommandXboxController controller) {
             this.barrel = barrel;
             this.controller = controller;
 
-            AddRequirements(barrel);
+            this.AddRequirements(barrel);
         }
 
         public override void End(bool interrupted) {

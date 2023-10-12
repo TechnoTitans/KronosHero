@@ -1,4 +1,4 @@
-namespace Kronos.wpilib.robot {
+namespace KronosHero.wpilib.robot {
     public enum RobotState {
         None,
         Disabled,
