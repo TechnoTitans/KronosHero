@@ -27,8 +27,6 @@ namespace KronosHero.robot {
         }
 
         public override void DisabledInit() {
-            //robotContainer.tankDrive.RemoveDefaultCommand();
-            //robotContainer.barrel.RemoveDefaultCommand();
         }
 
         public override void TeleopInit() {

@@ -82,6 +82,10 @@ namespace KronosHero.wpilib.robot {
         }
 
         protected void LoopFunc() {
+            if (nextState.ShouldFeedWatchdog()) {
+                Watchdog.Feed();
+            }
+
             if (lastState != nextState) {
                 switch (lastState) {
                     case RobotState.Disabled:
@@ -149,10 +153,6 @@ namespace KronosHero.wpilib.robot {
             }
 
             RobotPeriodic();
-
-            if (nextState.ShouldFeedWatchdog()) {
-                Watchdog.Feed();
-            }
         }
     }
 }

@@ -12,5 +12,9 @@ namespace KronosHero.wpilib.math {
 
             return input;
         }
+
+        public static double Clamp(double value, double low, double high) {
+            return System.Math.Max(low, System.Math.Min(value, high));
+        }
     }
 }

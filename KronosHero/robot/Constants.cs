@@ -30,11 +30,6 @@ namespace KronosHero.robot {
             public const int RSLPort = 1;
         }
 
-        public class ShotTimingBoard {
-            public const ushort Address = 0x0001;
-            public const int ClockRateKhz = 5;
-        }
-
         public static class Motors {
             public const int FrontLeftMain = 3;
             public const InvertType FrontLeftInversion = InvertType.InvertMotorOutput;

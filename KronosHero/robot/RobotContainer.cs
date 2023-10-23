@@ -16,7 +16,7 @@ namespace KronosHero.robot {
         private readonly TalonSRX barrelIndexMotor;
 
         public readonly DriverModule driverModule;
-        // public readonly RSL rsl;
+        public readonly RSL rsl;
 
         public readonly TankDrive tankDrive;
         public readonly Barrel barrel;
@@ -37,7 +37,7 @@ namespace KronosHero.robot {
             barrelIndexMotor = new TalonSRX(Constants.Motors.Index);
 
             driverModule = new DriverModule(Constants.DriverModule.DriveModulePort);
-            // rsl = new RSL(robot, driverModule, Constants.DriverModule.RSLPort);
+            rsl = new RSL(robot, driverModule, Constants.DriverModule.RSLPort);
 
             tankDrive = new TankDrive(leftMain, leftFollower, rightMain, rightFollower);
             barrel = new Barrel(barrelTiltMotor, barrelIndexMotor);
@@ -54,7 +54,7 @@ namespace KronosHero.robot {
         public void ConfigureButtonBindings() {
             controller.A().OnTrue(shootTeleop);
 
-            controller.B().OnTrue(new InstantCommand(() => {
+            controller.Y().OnTrue(new InstantCommand(() => {
                 barrel.Index();
             }));
 

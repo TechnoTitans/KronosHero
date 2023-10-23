@@ -48,7 +48,7 @@
     <Compile Include="robot\subsystems\Barrel.cs" />
     <Compile Include="robot\subsystems\RSL.cs" />
     <Compile Include="robot\subsystems\TankDrive.cs" />
-    <Compile Include="robot\teleop\TiltTeleop.cs" />
+    <Compile Include="robot\teleop\BarrelTiltTeleop.cs" />
     <Compile Include="robot\teleop\DriveTeleop.cs" />
     <Compile Include="robot\teleop\ShootTeleop.cs" />
     <Compile Include="robot\utils\MaxMath.cs" />
@@ -65,6 +65,7 @@
     <Compile Include="wpilib\controller\EventLoop.cs" />
     <Compile Include="wpilib\controller\Trigger.cs" />
     <Compile Include="wpilib\controller\XboxController.cs" />
+    <Compile Include="wpilib\math\controller\PIDController.cs" />
     <Compile Include="wpilib\math\MathUtil.cs" />
     <Compile Include="wpilib\netmf\Delegates.cs" />
     <Compile Include="wpilib\command\Command.cs" />

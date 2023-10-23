@@ -2,7 +2,8 @@ using CTRE.Phoenix.MotorControl;
 using CTRE.Phoenix.MotorControl.CAN;
 using KronosHero.robot.utils;
 using KronosHero.wpilib.command;
-using System;
+using KronosHero.wpilib.math;
+using KronosHero.wpilib.math.controller;
 
 namespace KronosHero.robot.subsystems {
     public class Barrel : Subsystem {
@@ -11,6 +12,8 @@ namespace KronosHero.robot.subsystems {
 
         private readonly TalonSRX barrelTiltMotor;
         private readonly TalonSRX barrelIndexMotor;
+
+        private readonly PIDController pidController;
 
         private double tiltPower;
 
@@ -27,7 +30,7 @@ namespace KronosHero.robot.subsystems {
         }
 
         private static int FindClosestIndex(int currentPositionTicks) {
-            return (int)Math.Round((currentPositionTicks - Constants.Barrel.ZeroedEncoderOffsetTicks)
+            return (int)((currentPositionTicks - Constants.Barrel.ZeroedEncoderOffsetTicks)
                                    / ((double)Constants.CTRE.TicksPerRotation / Constants.Barrel.IndexPositions));
         }
 
@@ -37,8 +40,12 @@ namespace KronosHero.robot.subsystems {
 
             this.tiltPower = 0;
 
-            _currentBarrelIndex = FindClosestIndex(Math.Abs(barrelIndexMotor.GetSelectedSensorPosition())
-                % Constants.CTRE.TicksPerRotation);
+            _currentBarrelIndex = FindClosestIndex((int)MathUtil.InputModulus(
+                barrelIndexMotor.GetSelectedSensorPosition(), 0, Constants.CTRE.TicksPerRotation - 1
+            ));
+
+            this.pidController = new PIDController(0.002, 0, 0);
+            this.pidController.EnableContinuousInput(0, 4095);
 
             Config();
         }
@@ -48,27 +55,20 @@ namespace KronosHero.robot.subsystems {
             barrelIndexMotor.ConfigFactoryDefault();
 
             barrelTiltMotor.ConfigAllSettings(new TalonSRXConfiguration {
-                continuousCurrentLimit = 15,
-                peakCurrentLimit = 20,
+                continuousCurrentLimit = 5,
+                peakCurrentLimit = 5,
                 peakCurrentDuration = 60,
                 peakOutputForward = 0.6f,
                 peakOutputReverse = -0.4f
             });
 
             barrelIndexMotor.ConfigAllSettings(new TalonSRXConfiguration {
-                slot_0 = new SlotConfiguration {
-                    kP = 0.004f,
-                    kD = 0,
-                    kF = 0
-                },
                 primaryPID = new BaseTalonPIDSetConfiguration {
                     selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Absolute
                 },
-                closedloopRamp = 0.2f,
-                feedbackNotContinuous = false
+                closedloopRamp = 0.4f,
             });
-
-            barrelIndexMotor.SetSensorPhase(true);
+            barrelIndexMotor.SetSensorPhase(false);
 
             barrelTiltMotor.SetInverted(Constants.Motors.TiltInversion);
             barrelIndexMotor.SetInverted(Constants.Motors.IndexInversion);
@@ -80,14 +80,11 @@ namespace KronosHero.robot.subsystems {
         public override void Periodic() {
             int desiredIndexPositionTicks = BarrelIndexTickPositions[_currentBarrelIndex];
 
-/*            double controlEffort =
-                (desiredIndexPositionTicks - MathUtil.InputModulus(barrelIndexMotor.GetSelectedSensorPosition(), 0, 4096))
-                * 0.004;*/
+            double sensorPos = MathUtil.InputModulus(barrelIndexMotor.GetSelectedSensorPosition(), 0, 4095);
+            double controlEffort = pidController.Calculate(sensorPos, desiredIndexPositionTicks);
 
             barrelTiltMotor.Set(ControlMode.PercentOutput, tiltPower);
-            barrelIndexMotor.Set(ControlMode.Position, desiredIndexPositionTicks);
-            //Fallback if previous doesn't work.
-            //barrelIndexMotor.Set(ControlMode.PercentOutput, controlEffort);
+            barrelIndexMotor.Set(ControlMode.PercentOutput, controlEffort);
         }
 
         public void SetTiltPower(double power) {
